@@ -1,0 +1,47 @@
+{% extends 'landing/base1.html' %}
+{% load static %}
+<!-- Block -->
+{% block content %}
+<div class="contain">
+	<img src="{% static 'img/filename.svg' %}" alt="" id="hello">
+	<div class="row justify-content-center mt-5">
+		<div class="col-md-10 col-sm-12 text-center">
+
+
+			<div id="slogan">
+				<h2 class="landingH2">
+					<script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+					<lord-icon src="https://cdn.lordicon.com/zzcjjxew.json" trigger="loop"
+						colors="primary:#b4b4b4,secondary:#c69cf4" stroke="82" scale="47" axis-x="35" axis-y="49"
+						style="width:80px;height:80px">
+					</lord-icon>
+					Follow Your Interests.
+				</h2>
+
+				<h2 class="landingH2">
+					<script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+					<lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop"
+						colors="primary:#b4b4b4,secondary:#c69cf4" stroke="82" scale="47" axis-x="35" axis-y="49"
+						style="width:80px;height:80px">
+					</lord-icon>
+					Hear what People are talking about.
+				</h2>
+				<h2 class="landingH2">
+					<script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+					<lord-icon src="https://cdn.lordicon.com/soseozvi.json" trigger="loop"
+						colors="primary:#b4b4b4,secondary:#a866ee" scale="47" axis-x="35" axis-y="49"
+						style="width:80px;height:80px">
+					</lord-icon>
+					Join the Conversation.
+				</h2>
+			</div>
+			<div class="d-flex justify-content-center mt-5" id="landingButtons">
+				<a href="{% url 'account_login' %}" class="btn  btn-grad" id="signinbutton">Log
+					In</a>
+				<a href="{% url 'account_signup' %}" class="btn btn-ungrad" id="signupbutton">Register</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+{% endblock content %}

@@ -1,0 +1,139 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row  mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-btf">Back to Home</a>
+        </div>
+    </div>
+    <hr class="solid" style="border-top: 2px solid #000000;width: 100%;">
+    <div class="row justify-content-center mt-5">
+        <div class="card col-md-8 col-sm-12 shadow-sm px-5 "
+            style="background-color: #0a0a0a;border: 5px solid white;padding-top: 25px;padding-bottom: 25px;">
+            <div class="text-center">
+                <img src="{{ profile.picture.url }}" class="rounded-circle" width="145" height="145"
+                    style="border:6px solid #00D100" />
+                {% if profile.name %}
+                <h5 class="py-0 mt-3" style="color: beige;"><b>{{ profile.name }}</b>
+                    <h6 class="py-0" style="color: #8899A6;">@{{user.username}}
+                        <span>
+                            {% if request.user == user %}
+                            <a href="{% url 'profile-edit' profile.pk %}" class="edit-color"><i
+                                    class="far fa-edit"></i></a>
+                            {% endif %}
+                        </span><br>
+                        {% else %}
+                        <h6 class="py-4" style="color: beige;">{{user.username}}
+                            <span>
+                                {% if request.user == user %}
+                                <a href="{% url 'profile-edit' profile.pk %}" class="edit-color"><i
+                                        class="far fa-edit"></i></a>
+                                {% endif %}
+                            </span>
+                        </h6>
+                        {% endif %}
+                    </h6>
+                </h5>
+                {% if profile.bio %}
+                <h6>
+                    <font color="white">{{ profile.bio }} </font>
+                </h6>
+                {% endif %} </p>
+                <h6>{% if profile.location %}
+                    <svg xmlns="http://www.w3.org/2000/svg" style="color:beige;" width="21" height="21"
+                        fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                    </svg>
+                    <font color="white">{{ profile.location }} </font>
+                    {% endif %}
+                    {% if profile.birth_date %}
+                    <svg viewBox="0 0 24 24" width="21" height="21" style="color:beige;" fill="currentColor"
+                        class="r-111h2gw r-4qtqp9 r-yyyyoo r-1xvli5t r-1d4mawv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr">
+                        <g>
+                            <path
+                                d="M7.75 11.083c-.414 0-.75-.336-.75-.75C7 7.393 9.243 5 12 5c.414 0 .75.336.75.75s-.336.75-.75.75c-1.93 0-3.5 1.72-3.5 3.833 0 .414-.336.75-.75.75z">
+                            </path>
+                            <path
+                                d="M20.75 10.333c0-5.01-3.925-9.083-8.75-9.083s-8.75 4.074-8.75 9.083c0 4.605 3.32 8.412 7.605 8.997l-1.7 1.83c-.137.145-.173.357-.093.54.08.182.26.3.46.3h4.957c.198 0 .378-.118.457-.3.08-.183.044-.395-.092-.54l-1.7-1.83c4.285-.585 7.605-4.392 7.605-8.997zM12 17.917c-3.998 0-7.25-3.402-7.25-7.584S8.002 2.75 12 2.75s7.25 3.4 7.25 7.583-3.252 7.584-7.25 7.584z">
+                            </path>
+                        </g>
+                    </svg>
+                    <font color="white">Born on {{ profile.birth_date }} </font>
+                    {% endif %}
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- <div class="row justify-content-center mt-5" >
+        <div class="card col-md-8 col-sm-12 shadow-sm px-5 pt-3" style="background-color: #0a0a0a;border: 5px solid white;">
+            <div>
+                <p><b><font size = "4" color ="white">Bio: </font></b>
+                {% if profile.bio %}
+                <font size = "4" color ="white">{{ profile.bio }} </font>
+                {% endif %} </p>
+            </div>
+            {% if profile.location %}
+            <p><b><font size = "4" color ="white">Location: </font></b><font size = "4" color ="white">{{ profile.location }}</font></p>
+            {% endif %}
+            {% if profile.birth_date %}
+            <p><b><font size = "4" color ="white">Birthday: </font></b><font size = "4" color ="white"> {{ profile.birth_date }}</font></p>
+            {% endif %}
+        </div>
+    </div> -->
+{% for post in posts %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 col-sm-12 position-relative"
+        style="background-color: #252525;padding-top: 25px;padding-bottom: 25px;">
+        <div>
+            <a href="{% url 'profile' post.author.profile.pk %}">
+                <img src="{{ post.author.profile.picture.url }}" alt="profilePicture" class="rounded-circle post-img"
+                    height="60" width="60" style="border:3px solid #00D100">
+            </a>
+            <p class="post-text">
+                <a class="text-primary post-link" href="{% url 'profile' post.author.profile.pk %}">
+                    <b>{{ post.author }}</b></a>
+                <font style="text-align: right;" color="white"><i><span style="float:right;">{{ post.created_on }}
+                        </span></i></font>
+            </p>
+        </div>
+        <div class="position-relative">
+            <p>
+                <font color="white" style="word-break: break-all">{{ post.body }} </font>
+            </p>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="post-image">
+            {% endif %}
+            {% if post.videofile %}
+            <video width="610" height="300" controls>
+                <source src="{{ post.videofile.url }}" type="video/mp4" class="post-video">
+            </video>
+            {% endif %}
+            <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
+        </div>
+
+        <div class="d-flex flex-row mt-3">
+            <form method="POST" action="{% url 'like' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button class="remove-default-btn" type="submit"><i class="fas fa-arrow-circle-up edit-color"></i>
+                    <span class="edit-color">{{ post.likes.all.count }}</span></button>
+            </form>
+
+            <form method="POST" action="{% url 'dislike' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button class="remove-default-btn" type="submit"><i class="fas fa-arrow-circle-down edit-colors"></i>
+                    <span class="edit-colors">{{ post.dislikes.all.count }}</span></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

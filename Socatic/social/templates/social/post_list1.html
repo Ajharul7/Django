@@ -1,0 +1,106 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+{% load static%}
+{% block content %}
+
+<img src="{% static 'img/bg4.png' %}" height="400" width="750" id="ar" > <br> <br>
+
+<div class="alert" style="margin-left: 22.8%;margin-top: 6%;">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';" style="float: right;"><h4><b>&times;</b></h4></span>
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+    <h4 style="margin-left:36%;"><lord-icon
+        src="https://cdn.lordicon.com/nocovwne.json"
+        trigger="loop"
+        colors="primary:#121331,secondary:#08a88a"
+        style="width:60px;height:55px">
+    </lord-icon> 
+    <strong>Notice</strong> </h4> <h6 style="size: 10px;text-align: center;">This Page is specifically for <b> Problems related to the City </b>. Posts related to Problems related to the city are to be 
+    uploaded here.<br><br> Any Post related to any other topic will be automatically deleted.</h6><br>
+  </div>
+
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-7 col-sm-12" style="margin-left: 4%;"><br><br>
+            <h5 style="font-family:'Arial', Sans-serif;font-size: 25px;
+            color: #9d6de6; isolation: isolate;"><b> Add a Post ! </b></h5>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-7 col-sm-12" style="margin-left: 30px;">
+            <form method="POST" enctype="multipart/form-data" class="box">
+                {% csrf_token %}
+                <!-- {{ form | crispy }} -->
+                {{ form.body }}<br>
+                <div style="float: right;">
+                    <h5 style="font-family:'Arial', Sans-serif;font-size: 18px;
+                    color: #9d6de6; isolation: isolate;"><b>Select Video: </b></h5>
+                    {{ form.videofile }}
+                </div>
+                <h5 style="font-family:'Arial', Sans-serif;font-size: 18px;
+                color: #9d6de6;isolation: isolate;"><b>Select Image: </b> </h5>
+                {{ form.image }} <br> <br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3 btn-post1">
+                        <font size="4.5"><b>Post</b></font>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<h2 style="text-align: center;margin-right: 60px;
+	color: #9d6de6; isolation: isolate;">Feed</h2><br>
+{% for post in post_list1 %}
+<div class="row justify-content-center mt-3">
+
+    <div class="col-md-5 col-sm-12 position-relative"
+        style="background-color: #252525;padding-top: 25px;padding-bottom: 25px;">
+        <div>
+            <a href="{% url 'profile' post.author.profile.pk %}">
+                <img src="{{ post.author.profile.picture.url }}" alt="profilePicture" class="rounded-circle post-img"
+                    height="60" width="60" style="border:3px solid #00D100">
+            </a>
+            <p class="post-text">
+                <a class="text-primary post-link" href="{% url 'profile' post.author.profile.pk %}">
+                    <font size="3">
+                        <b>{{ post.author }}</b>
+                    </font>
+                </a>
+                <font style="text-align: right;" color="white"><i><span style="float:right;">
+                            {{ post.created_on}}</span></i></font>
+            </p>
+        </div>
+        <div class="position-relative">
+            <p style="word-break: break-all">
+                <font color="white">{{ post.body }}</font>
+            </p>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="post-image">
+            {% endif %}
+            {% if post.videofile %}
+            <video width="610" height="300" controls>
+                <source src="{{ post.videofile.url }}" type="video/mp4" class="post-video">
+            </video>
+            {% endif %}
+            <a class="stretched-link" href="{% url 'post-detail1' post.pk %}"></a>
+        </div>
+        <div class="d-flex flex-row mt-3">
+            <form method="POST" action="{% url 'like1' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button class="remove-default-btn" type="submit"><i class="fas fa-arrow-circle-up edit-color"></i>
+                    <span class="edit-color">{{post.likes.all.count }}</span></button>
+            </form>
+
+            <form method="POST" action="{% url 'dislike1' post.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button class="remove-default-btn" type="submit"><i class="fas fa-arrow-circle-down edit-colors"></i>
+                    <span class="edit-colors">{{post.dislikes.all.count }}</span></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

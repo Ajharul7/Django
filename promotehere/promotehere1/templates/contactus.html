@@ -1,0 +1,60 @@
+{% extends 'basic.html' %}
+
+{% block title%} PromoteHere - Contact Us{% endblock %}
+{% block css %} 
+body {
+  background-color: #252525;
+}
+.btn-success {
+  float: right;
+}
+{% endblock %}
+{% block body %}
+<div class="container my-3">
+    <h3 style="color: white;">Contact Us - All Your Queries Will Be Answered !</h3>
+    <form action="/contactus/" method="post" name="myForm">{% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name='name' placeholder="Enter Your Name" required>
+  </div>
+  <div class="form-group">
+    <label for="name">Email</label>
+    <input type="email" class="form-control" id="email" name='email' placeholder="Enter Your Email" required>
+  </div>
+
+    <div class="form-group">
+    <label for="name">Phone</label>
+    <input type="tel" class="form-control" id="phone" name='phone' placeholder="Enter Your Phone Number" required>
+  </div><br>
+
+
+   <div class="form-group">
+    <label for="desc" style="color: azure;">How May We Help You?</label>
+    <textarea class="form-control" id="desc" name='desc' rows="3" style="resize:none;" required></textarea>
+  </div>
+        <button type="submit" class="btn btn-success" onclick="myFunction()"><b>Submit</b></button>
+</form><br><br>
+</div>
+<script>
+  function myFunction() {
+    var x = document.forms["myForm"]["name"].value;
+    var y = document.forms["myForm"]["email"].value;
+    var z = document.forms["myForm"]["phone"].value;
+    var w = document.forms["myForm"]["desc"].value;
+    if (x == "") {
+    alert("Name must be filled out");
+    return false; }
+    else if (y == "") {
+    alert("Email must be filled out");
+    return false; }
+    else if (z == "") {
+    alert("Phone Number must be filled out");
+    return false; }
+    else if (w == "") {
+    alert("Please Dont Leave Your Message Blank");
+    return false; }
+    else
+    alert("Thanks For Contacting Us We will get back to you soon!");
+  };
+</script>
+{% endblock %}

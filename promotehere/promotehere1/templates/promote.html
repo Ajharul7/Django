@@ -1,0 +1,162 @@
+{% extends 'basic.html' %}
+
+{% block title%} PromoteHere - Promote{% endblock %}
+{% block css %} 
+body {
+  background-color: #252525;
+  color:white;
+}
+hr.rounded {
+    border-top: 6px solid white;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+.black-box {
+    background-color : #171717;
+    width: 100%;
+    height: 75px;
+    border-radius: 4px;
+}
+textarea {
+    resize: none;
+}
+.btn-success {
+    float: right;
+    background-color: #171717;
+    border: 1px solid white;
+}
+.btn-success:hover {
+    float: right;
+    background-color: white;
+    color: #171717;
+    border: 1px solid #171717;
+}
+.font-1 {
+    font-family: Oswald;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+{% endblock %}
+{% block body %}
+<div class="font-1"><br>
+<h2 style="color: #fed126;text-align: center;">Promote</h2>
+<hr class="rounded">
+<h5 class="pt-2 pb-2" style="color: #fed126;"> &#9675 Details</h5>
+<hr class="rounded">
+<form method="post" enctype="multipart/form-data" action="/promote/" name="myForm"> {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Your Name</label>
+      <input type="name" class="form-control" name='fullname' id="exampleFormControlInput1" placeholder="Your Full Name">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Your Email</label>
+        <input type="email" class="form-control" name='user_email' id="exampleFormControlInput1" placeholder="Your Email">
+      </div> 
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Your Phone Number</label>
+        <input type="tel" class="form-control" name='user_phone' id="exampleFormControlInput1" placeholder="Your Phone Number">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Name of the Business/Socials/Others to Promote</label>
+        <input type="text" class="form-control" name='user_promote' id="exampleFormControlInput1" placeholder="Business/Social's/Other's Name">
+    </div>  
+    <div class="form-group pb-3">
+        <label for="exampleFormControlInput1">Link to your Business/Socials/Others (if any)</label>
+        <input type="text" class="form-control" name='user_link' id="exampleFormControlInput1" placeholder="Link" >
+    </div>
+    <hr class="rounded">
+    <h5 class="pt-2 pb-2" style="color: #fed126;"> &#9675 Choose the Website/Pages/Others in which you want to promote your Business</h5>
+    <hr class="rounded">
+    <div class="black-box pl-4">
+    <div class="custom-control custom-switch pt-4">
+        <input type="checkbox" class="custom-control-input" name='website_1' id="customSwitches" onclick="save()" value="True">
+        <label class="custom-control-label pl-2" for="customSwitches"><a class="fa fa-chrome mr-2" style="font-size:29.6px;color:white"></a> <a href="#"> www.silcharsarasm.com </a><i>(Price: Rs. 1200/week)</i></label>
+      </div></div>
+      <div class="black-box pl-4 mt-3">
+    <div class="custom-control custom-switch pt-4">
+        <input type="checkbox" class="custom-control-input" name='website_2' id="customSwitches1" onclick="save1()" value="True" >
+        <label class="custom-control-label pl-2" for="customSwitches1"><a class="fa fa-chrome mr-2" style="font-size:29.6px;color:white"></a> <a href="#">www.silcharsarasm.com2 </a><i>(Price: Rs. 1200/week)</i></label>
+      </div></div>
+    <div class="black-box pl-4 mt-3">
+    <div class="custom-control custom-switch pt-4">
+        <input type="checkbox" class="custom-control-input" name='page_1' id="customSwitches2" onclick="save2()" value="True">
+        <label class="custom-control-label pl-2" for="customSwitches2"><a class="fa fa-facebook-official mr-2" style="font-size:29.6px;color:white"></a> SilcharSarcasm <i>(Price: Rs. 1200/week)</i></label>
+      </div></div>
+      <div class="black-box pl-4 mt-3">  
+    <div class="custom-control custom-switch pt-4">
+        <input type="checkbox" class="custom-control-input" name='page_2' id="customSwitches3" onclick="save3()" value="True">
+        <label class="custom-control-label pl-2" for="customSwitches3"><a class="fa fa-facebook-official mr-2" style="font-size:29.6px;color:white"></a> SilcharSarcasm <i>(Price: Rs. 1200/week)</i></label>
+      </div></div>
+      <hr class="rounded">
+      <h5 class="pt-2 pb-2" style="color: #fed126;"> &#9675 Upload Your Banner/Poster For the Ad (if any)</h5>
+      <hr class="rounded">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" name='user_image' id="customFile" >
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    <hr class="rounded">
+    <h5 class="pt-2 pb-2" style="color: #fed126;"> &#9675 More About The Ad</h5>
+      <hr class="rounded">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1"><i>Tell Us More About Your Business/Socials/Others :</i></label>
+      <textarea class="form-control" name='user_moretext' id="exampleFormControlTextarea1" rows="3" ></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"><i>Any Additional Information You Want To Give Us :</i></label>
+        <textarea class="form-control mb-3" name='user_add' id="exampleFormControlTextarea1" rows="3" ></textarea>
+      </div>
+    <hr class="rounded">
+    <button class="btn btn-success" type="submit" onclick="redirect()"><a class="fa fa-arrow-circle-o-right mr-1"></a>Proceed</button> <br><br>
+  </form>
+</div>
+<script>
+    var a = document.getElementById('customSwitches');
+    var b = document.getElementById('customSwitches1');
+    var c = document.getElementById('customSwitches2');
+    var d = document.getElementById('customSwitches3');
+      function save(){
+        if(a.checked == true) {
+            localStorage.setItem("Value0", "<div class='box5'><a class='fa fa-chrome mr-2' style='font-size:29.6px;color:white'></a> <a href='#'> www.silcharsarasm.com </a><i>(Price: Rs. 1200/week)</i><button type='button' class='close' id='right-1' aria-label='Close' onclick='remove()'><span aria-hidden='true'>&times;</span></button></div><br>");
+            localStorage.setItem("Price0",1200);}
+        else if (a.checked == false){
+            localStorage.removeItem("Value0"); 
+            localStorage.removeItem("Price0");
+            }
+      }
+      function save1(){
+        if(b.checked == true) {
+            localStorage.setItem("Value1","<div class='box5'><a class='fa fa-chrome mr-2' style='font-size:29.6px;color:white'></a> <a href='#'>www.silcharsarasm.com2 </a><i>(Price: Rs. 1200/week)</i><button type='button' class='close' id='right-1' aria-label='Close' onclick='remove1()'><span aria-hidden='true'>&times;</span></button></div><br>");
+            localStorage.setItem("Price1",1200);
+            }
+        else if (b.checked == false){
+            localStorage.removeItem("Value1");
+            localStorage.removeItem("Price1");
+        }
+      }
+      function save2(){
+        if(c.checked == true) {
+            localStorage.setItem("Value2","<div class='box5'><a class='fa fa-facebook-official mr-2' style='font-size:29.6px;color:white'></a> SilcharSarcasm <i>(Price: Rs. 1200/week)</i><button type='button' class='close' id='right-1' aria-label='Close' onclick='remove2()'><span aria-hidden='true'>&times;</span></button></div><br>");
+            localStorage.setItem("Price2",2200);
+            }
+        else if (c.checked == false){
+            localStorage.removeItem("Value2");
+            localStorage.removeItem("Price2");
+        }
+      }
+      function save3(){
+        if(d.checked == true) {
+            localStorage.setItem("Value3","<div class='box5'><a class='fa fa-facebook-official mr-2' style='font-size:29.6px;color:white'></a> SilcharSarcasm2 <i>(Price: Rs. 1200/week)</i><button type='button' class='close' id='right-1' aria-label='Close' onclick='remove3()'><span aria-hidden='true'>&times;</span></button></div><br>");
+            localStorage.setItem("Price3",3000);
+            }
+        else if (d.checked == false){
+            localStorage.removeItem("Value3");
+            localStorage.removeItem("Price3");
+        }
+      }
+// redirecting form
+      {% if thank %}
+      alert("Your Data Has Been Submited.Please Go to the Checkout Page");
+      document.location="/payment";
+      {% endif %}
+</script>
+{% endblock %}

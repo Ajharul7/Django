@@ -1,0 +1,47 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<div style="background-color: #FF647F;margin-left: 10%;margin-right: 10%;border-radius: 15px;isolation: isolate;"
+	id="shadow-box-try">
+	<image src="{% static 'img/2.png'%}" height="395px" width="600px" style="margin-left: 26% ;">
+</div>
+<br><br>
+<div class="secondsection" id="shadow-box-try">
+	<div class="box-main"
+		style="text-align: justify; padding-left: 5%; padding-right: 5%; padding-top: 4%; margin-top: 2%; font-family:'Arial', Sans-serif;font-size: small;border-radius: 15px;">
+		<div class="middle1">
+			<h3 class="text" id="Home"><u><b>Why do we need to give blood:</b></u></h3><br>
+			<p class="text">
+			<h4>
+				Giving blood saves lives the blood you give is a lifeline
+				in an emergency and for people who need long-term treatments.</h4>
+			</p><br>
+			<h3><u><b>Benefits of Donating Blood:</b></u></h3><br>
+			<p>
+			<h4>Donating blood has benefits for your emotional and physical health. According to a report by the Mental
+				Health Foundation, helping others can:
+				<li>reduce stress</li>
+				<li>improve your emotional well-being</li>
+				<li>benefit your physical health</li>
+				<li>help get rid of negative feelings</li>
+				<li>provide a sense of belonging and reduce isolation</li>
+
+			</h4>
+			</p><br>
+		</div>
+	</div><br>
+	<br<br>
+</div>
+<br><br><br>
+<div class="footer">
+	<div class="text-footer" id="shadow-box-try">
+		<h2 style="color: #9d6de6;isolation: isolate;"><b>Want to be a donor?</b></h2><br>
+
+		<a href="{% url 'blood-form' %}"><button type="submit" class="btn btn-sign btn-block"
+				style="height:50px;width: 160px;"><b>Register Here</b></button></a>
+
+	</div><br><br>
+</div>
+{% endblock content %}

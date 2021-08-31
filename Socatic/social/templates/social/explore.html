@@ -1,0 +1,130 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+
+    <div class="card-container">
+
+        <div class="cardx card-1">
+            <!-- <div class="card__icon"> -->
+            <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/jaghjelc.json" trigger="loop"
+                colors="primary:#121331,secondary:#30c9e8;" scale="43" style="width:80px;height:80px"
+                class="card__icon">
+            </lord-icon>
+            <!-- </div> -->
+            <h2 style="margin-left: 90px; color:white;"> Animal Rescue</h2>
+
+            <img src="{% static 'img/kindpng.png' %}" alt="" width="350rem" height="300rem" class="cardimg"
+                style="margin-top: 50px;margin-left: 120px;">
+
+            <p class="card__apply"><a href="{% url 'post-list1' %}" style="text-decoration: none;"
+                    class="cardapplylink">Apply Now <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+
+        <div class="cardx card-2">
+            <!-- <div class="card__icon"> -->
+            <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/oyclgnwc.json" trigger="loop"
+                colors="primary:#c71f16,secondary:#e83a30" style="width:70px;height:70px" class="card__icon">
+            </lord-icon>
+
+            <!-- </div> -->
+            <h2 style="margin-left: 90px; color:white;"> Blood Donation</h2>
+            <img src="{% static 'img/2.png' %}" alt="" width="350rem" height="300rem" class="cardimg"
+                style="margin-top: 40px;margin-left: 100px;">
+
+            <!-- </h3> -->
+            <p class="card__apply"><a href="{% url 'blood-donation' %}" style="text-decoration: none;"
+                    class="cardapplylink">Donate Now <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+
+        <div class="cardx card-3">
+            <!-- <div class="card__icon"> -->
+
+            <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/ribdawhq.json" trigger="loop"
+                colors="primary:#121331,secondary:#08a88a" style="width:70px;height:70px" class="card__icon">
+            </lord-icon>
+            <h2 style="margin-left: 90px; color:white;"> Plantation</h2>
+            <img src="{% static 'img/kindpng_1.png' %}" alt="" width="350rem" height="300rem" class="cardimg"
+                style="margin-top: 40px;margin-left: 100px;">
+
+            <!-- </h3> -->
+            <p class="card__apply"><a href="{% url 'plantation' %}" style="text-decoration: none;"
+                    class="cardapplylink">Apply Now <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+        <!-- <p style="margin-left:44px ;">Plantation</p>
+
+            </div>
+            <h3 class="card__title"> Plantation
+                <img src="{% static 'img/2.png' %}" alt="" width="300rem" height="300rem" class="cardimg">
+
+            </h3>
+            <p class="card__apply"><a href="#" style="text-decoration: none;" class="cardapplylink">Apply Now <i
+                        class="fas fa-arrow-right"></i></a>
+            </p>
+        </div> -->
+        <div class="cardx card-4">
+            <!-- <div class="card__icon"> -->
+            <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/jqeuwnmb.json" trigger="loop"
+                colors="primary:#545454,secondary:#111" style="width:80px;height:70px ;margin-top: 10px;"
+                class="card__icon">
+            </lord-icon>
+
+            <!-- </div> -->
+            <!-- <h3 class="card__title"> News
+                <img src="{% static 'img/2.png' %}" alt="" width="300rem" height="300rem" class="cardimg">
+
+            </h3> -->
+            <h2 style="margin-left: 90px; color:white"> News </h2>
+            <img src="{% static 'img/readnews.png' %}" alt="" width="300rem" height="300rem"
+                style="margin-top: 40px;margin-left: 10px;display:inline">
+            <div class="cardx_in_1">
+                <h4><u>Recent News</u> :</h4>
+                <b> SHANTICA, a career counselling start-up initiative to launch in Silchar....</b>
+                <a href="https://www.barakbulletin.com/en_US/shantica-a-career-counselling-start-up-initiative-to-launch-in-silchar/"
+                    class="post-title post-url"> Read More </a>
+            </div>
+            <!-- <br> -->
+            <!-- <div class="cardx_in_2">
+                hey esesrsts eseststst tesststes tstss yititiy itiyutytterteyt
+            </div> -->
+            <p class="card__apply"><a href="{% url 'news' %}" style="text-decoration: none; left:550px;"
+                    class="cardapplylink">More
+                    <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+        <div class="cardx card-5">
+            <!-- <div class="card__icon"> -->
+            <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop" colors="primary:#111,secondary:#111"
+                stroke="82" scale="47" axis-x="35" axis-y="49" style="width:80px;height:80px" class="card__icon">
+            </lord-icon>
+
+            <h2 style="margin-left: 90px; color:white;"> Problems </h2>
+            <img src="{% static 'img/bg4.png' %}" alt="" width="350rem" height="300rem" class="cardimg"
+                style="margin-top: 40px;margin-left: 100px;">
+            <p class="card__apply"><a href="{% url 'post-list2' %}" style="text-decoration: none;"
+                    class="cardapplylink">Share
+                    with Us <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+        <!-- <div class="card card-5">
+            <div class="card__icon"><i class="fas fa-bolt"></i></div>
+            <h2 class="card__title">Ut aliquip ex ea commodo consequat. Duis aute irure dolor.</h2>
+            <p class="card__apply"><a href="#">Apply Now <i class="fas fa-arrow-right"></i></a></p>
+        </div>
+        <div class="card card-1">
+            <div class="card__icon"><i class="fas fa-bolt"></i></div>
+            <h2 class="card__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <p class="card__apply"><a href="#">Apply Now <i class="fas fa-arrow-right"></i></a></p>
+        </div> -->
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,145 @@
+{% extends 'basic.html' %}
+
+{% block title%} PromoteHere - Payment{% endblock %} 
+{% block css %}
+body {
+    background-color: #252525;
+    color: white;
+}
+.box4 {
+    background-color: white;
+    width: 80%;
+    height: 700px;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+.box5 {
+    background-color: #191919;
+    width: 91%;
+    height: 70px;
+    color: white;
+    margin-left: 4.2%;
+    border-radius: 2px;
+    padding-top: 1.7%;
+    padding-left: 3%;
+    font-family: Oswald;
+    font-size:15.8px;
+    box-shadow: 9px 9px 9px black;
+}
+.box6 {
+    background-color: #216C2A;
+    width: 91%;
+    height: 70px;
+    color: white;
+    margin-left: 4.2%;
+    border-radius: 2px;
+    padding-top: 1.7%;
+    padding-left: 3%;
+    font-family: Oswald;
+    font-size:15.8px;
+    box-shadow: 9px 9px 9px black;
+    padding-top : 2%;
+}
+.close {
+    float : right;
+    margin-right: 3%;
+    color: white;
+    border: 0px;
+}
+.close-1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    margin-left: 51%;
+}
+.btn-success {
+    float: right;
+    margin-right: 5%;
+    margin-top: 3.5%;
+    background-color: #171717;
+    border: 0px solid white;
+    box-shadow: 5px 5px 5px black;
+}
+.btn-success:hover {
+    background-color: white;
+    color: #171717;
+    border: 0px solid #171717;
+}
+#text-center{
+    text-align: center;
+    color: black;
+    padding-top: 2%;
+}
+#text-1{
+    color: black;
+    padding-left: 3%;
+}
+#right-1 {
+    padding-left: 10%;
+}
+{% endblock %}
+{% block body %}
+<div class="box4">
+    <h3 id="text-center"><b>Checkout</b></h3><br>
+    <h5 id="text-1"><b> &#8226 Website/Pages/Others:</b></h5><br>
+    <div id="demo"></div>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+    <div id="demo3"></div>
+    <div class="box6" id="demo4"></div>
+    <form action="/finalpayment">
+    <button class="btn btn-success" type="submit" onclick="clear1()"><a class="fa fa-arrow-circle-o-right mr-1"></a>Checkout</button>
+    </form>
+</div>
+<script>
+    function click1(){
+    var i=0;
+    var v = localStorage.getItem("Value"+i);
+    document.getElementById("demo").innerHTML = v;
+    i++;
+    var x = localStorage.getItem("Value"+i);
+    document.getElementById("demo1").innerHTML = x;
+    i++;
+    var y = localStorage.getItem("Value"+i);
+    document.getElementById("demo2").innerHTML = y;
+    i++;
+    var z = localStorage.getItem("Value"+i);
+    document.getElementById("demo3").innerHTML = z;
+    }
+    click1();
+    var totalprice = "Total Price : Rs. "+ (Number(localStorage.getItem("Price0")) + Number(localStorage.getItem("Price1")) + Number(localStorage.getItem("Price2")) + Number(localStorage.getItem("Price3")));
+    if(totalprice == 0){
+        o.hide();
+    }
+    else {
+        o;
+    }
+    var o = document.getElementById("demo4").innerHTML = totalprice;
+    function remove(){
+        localStorage.removeItem("Value0"); 
+        localStorage.removeItem("Price0");
+        location.reload();
+    }
+    function remove1(){
+        localStorage.removeItem("Value1"); 
+        localStorage.removeItem("Price1");
+        location.reload();
+    }
+    function remove2(){
+        localStorage.removeItem("Value2"); 
+        localStorage.removeItem("Price2");
+        location.reload();
+    }
+    function remove3(){
+        localStorage.removeItem("Value3"); 
+        localStorage.removeItem("Price3");
+        location.reload();
+    }
+    function clear1() {
+        localStorage.clear();
+    }
+</script>
+{% endblock %}
